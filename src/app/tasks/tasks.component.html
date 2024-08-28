@@ -1,0 +1,29 @@
+<section id="tasks">
+  <header>
+    <h2 [innerText]="selectedUser?.name"></h2>
+
+    <menu>
+      <button (click)="onTaskAdd()">Add Task</button>
+    </menu>
+  </header>
+
+  @if (displayAddTaskForm) {
+  <section>
+    <h2>Add Tasks</h2>
+    <input type="text" />
+    <button>Add</button>
+  </section>
+  }
+
+  <ul>
+    @for(task of selectedUserTasks; track task.id){
+    <li><app-task [task]="task" (complete)="onTaskCompleted($event)" /></li>
+    }@empty {
+    <li>
+      <p>
+        <b> {{ selectedUser?.name }} </b> doesn't have any tasks
+      </p>
+    </li>
+    }
+  </ul>
+</section>
