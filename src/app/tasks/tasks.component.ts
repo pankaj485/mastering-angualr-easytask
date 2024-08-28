@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { TaskComponent } from './task/task.component';
 import { User } from '../user/user.model';
 import { Task } from './task/task.model';
+import { FormsModule } from '@angular/forms';
 
 let dummyTasks: Task[] = [
   {
@@ -32,7 +33,7 @@ let dummyTasks: Task[] = [
 @Component({
   selector: 'app-tasks',
   standalone: true,
-  imports: [TaskComponent],
+  imports: [TaskComponent, FormsModule],
   templateUrl: './tasks.component.html',
   styleUrl: './tasks.component.css',
 })
@@ -41,6 +42,7 @@ export class TasksComponent {
   @Input({ required: true }) userId?: string;
 
   displayAddTaskForm: boolean = false;
+  newTask?: Task;
 
   get selectedUserTasks(): Task[] {
     return dummyTasks.filter((task) => task.userId === this.userId);
@@ -51,6 +53,7 @@ export class TasksComponent {
   }
 
   onTaskAdd() {
-    this.displayAddTaskForm = true;
+    this.displayAddTaskForm = false;
+    console.log(this.displayAddTaskForm);
   }
 }
