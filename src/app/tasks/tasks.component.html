@@ -1,18 +1,15 @@
+@if (isAddingTask) {
+<app-add-task (cancel)="onCancelAddTask()" />
+}
+
 <section id="tasks">
   <header>
     <h2 [innerText]="selectedUser?.name"></h2>
 
     <menu>
-      <button (click)="displayAddTaskForm = true">Add Task</button>
+      <button (click)="isAddingTask = true">Add Task</button>
     </menu>
   </header>
-
-  @if (displayAddTaskForm) {
-  <section>
-    <input type="text" placeholder="Won't udpate db for now" />
-    <button (click)="onTaskAdd()">Add</button>
-  </section>
-  }
 
   <ul>
     @for(task of selectedUserTasks; track task.id){

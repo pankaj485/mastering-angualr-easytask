@@ -3,6 +3,7 @@ import { TaskComponent } from './task/task.component';
 import { User } from '../user/user.model';
 import { Task } from './task/task.model';
 import { FormsModule } from '@angular/forms';
+import { AddTaskComponent } from './add-task/add-task.component';
 
 let dummyTasks: Task[] = [
   {
@@ -33,7 +34,7 @@ let dummyTasks: Task[] = [
 @Component({
   selector: 'app-tasks',
   standalone: true,
-  imports: [TaskComponent, FormsModule],
+  imports: [TaskComponent, FormsModule, AddTaskComponent],
   templateUrl: './tasks.component.html',
   styleUrl: './tasks.component.css',
 })
@@ -41,7 +42,7 @@ export class TasksComponent {
   @Input({ required: true }) selectedUser?: User;
   @Input({ required: true }) userId?: string;
 
-  displayAddTaskForm: boolean = false;
+  isAddingTask: boolean = false;
   newTask?: Task;
 
   get selectedUserTasks(): Task[] {
@@ -52,8 +53,11 @@ export class TasksComponent {
     dummyTasks = dummyTasks.filter((task) => task.id !== taskId);
   }
 
-  onTaskAdd() {
-    this.displayAddTaskForm = false;
-    console.log(this.displayAddTaskForm);
+  onStartAddTask() {
+    this.isAddingTask = true;
+  }
+
+  onCancelAddTask() {
+    this.isAddingTask = false;
   }
 }
