@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { TaskComponent } from './task/task.component';
 import { User } from '../user/user.model';
-import { Task } from './task/task.model';
+import { NewTask, Task } from './task/task.model';
 import { FormsModule } from '@angular/forms';
 import { AddTaskComponent } from './add-task/add-task.component';
 
@@ -58,6 +58,19 @@ export class TasksComponent {
   }
 
   onCancelAddTask() {
+    this.isAddingTask = false;
+  }
+
+  onTaskAdd(task: NewTask) {
+    const { date, summary, title } = task;
+    const newTask: Task = {
+      id: new Date().getTime().toString(),
+      userId: this.userId || '',
+      title,
+      summary,
+      dueDate: date,
+    };
+    dummyTasks.unshift(newTask);
     this.isAddingTask = false;
   }
 }
