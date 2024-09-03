@@ -46,7 +46,7 @@ export class AppComponent {
     },
   ];
 
-  selectedUserId?: string;
+  selectedUserId: string = '';
   onSelectUser(userId: string) {
     this.selectedUserId = userId;
   }
