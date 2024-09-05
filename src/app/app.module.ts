@@ -1,20 +1,26 @@
+import { CommonModule, DatePipe } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
-import { UserComponent } from './user/user.component';
-import { CommonModule } from '@angular/common';
+import { CardComponent } from './shared/card/card.component';
+import { AddTaskComponent } from './tasks/add-task/add-task.component';
+import { TaskComponent } from './tasks/task/task.component';
 import { TasksComponent } from './tasks/tasks.component';
-import { BrowserModule } from '@angular/platform-browser';
+import { UserComponent } from './user/user.component';
 
 @NgModule({
-  declarations: [AppComponent],
-  bootstrap: [AppComponent],
-  imports: [
+  declarations: [
+    AppComponent,
     HeaderComponent,
     UserComponent,
-    CommonModule,
+    CardComponent,
     TasksComponent,
-    BrowserModule,
+    TaskComponent,
+    AddTaskComponent,
   ],
+  bootstrap: [AppComponent],
+  imports: [CommonModule, BrowserModule, FormsModule, DatePipe],
 })
 export class AppModule {}
